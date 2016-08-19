@@ -21,7 +21,7 @@ describe('Item_REST', function() {
         it('should return 404 if id is wrong with GET /download/<id>');
     }),
 
-    describe('Upload', function(){
+    describe('Uploading', function(){
         it('should return 201 and return created item ID with POST /upload/<data>');
 
         it('should return 200 after updating new price to item with PUT /upload/price/<id>/<new price>');
@@ -30,7 +30,29 @@ describe('Item_REST', function() {
         
     }),
 
-    describe('Voting', function(){
+    describe('Suggesting', function(){ 
+        it('should return 201 and return list of suggested tags after suggest a new tag to an item with POST /suggest/tag/<id>/<tag>');
+        it('should return 201 and return list of suggested prices after suggest a new price to an item with POST /suggest/price/<id>/<price>');
+        it('should return 201 and return list of suggested picture URL after suggest a new picture URL to an item with POST /suggest/picture/<id>/<picture URL>');
         
+        it('should return 404 if id cannot match an item with POST /suggest/tag/<id>/<tag>');
+        it('should return 400 if suggest a tag that was existed in item with POST /suggest/tag/<id>/<tag>');
+        it('should return 404 if id cannot match an item with POST /suggest/price/<id>/<price>');
+        it('should return 400 if suggest a price that was existed in item with POST /suggest/price/<id>/<price>');
+        it('should return 404 if id cannot match an item with POST /suggest/picture/<id>/<picture>');
+        it('should return 400 if suggest a picture U that was existed in item with POST /suggest/picture U/<id>/<picture U>');
+    });
+
+    describe('Voting', function(){
+        it('should return 200 and total vote number after vote a tag which existed with PUT /vote/tag/<id>/<tag>');
+        it('should return 200 and total vote number after vote a price which existed with PUT /vote/price/<id>/<price>');
+        it('should return 200 and total vote number after vote a picture which existed with PUT /vote/price/<id>/<picture URL>');
+
+        it('should return 404 if id cannot match an item with PUT /vote/tag/<id>/<tag>');
+        it('should return 404 if tag does not match the item existing tag with PUT /vote/tag/<id>/<tag>');
+        it('should return 404 if id cannot match an item with PUT /vote/price/<id>/<price>');
+        it('should return 404 if tag does not match the item existing price with PUT /vote/price/<id>/<price>');
+        it('should return 404 if id cannot match an item with PUT /vote/picture/<id>/<picture URL>');
+        it('should return 404 if tag does not match the item existing picture URL with PUT /vote/picture/<id>/<picture URL>');
     })
 });
