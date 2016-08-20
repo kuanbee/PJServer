@@ -1,0 +1,25 @@
+{
+  "name": "pjserver",
+  "version": "1.0.0",
+  "description": "Server for Price Journal",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuanbee/PJServer.git"
+  },
+  "author": "Kuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kuanbee/PJServer/issues"
+  },
+  "homepage": "https://github.com/kuanbee/PJServer#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
