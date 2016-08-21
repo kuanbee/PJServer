@@ -1,16 +1,18 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var should = chai.should();
-var server = require('../lib/server');
+var server = require('../app');
 
 chai.use(chaiHttp);
 
 
 describe('Item_REST', function() {
     describe('Searching', function() {
-        it('should return 200 and list of items when tags are matches with GET /search/<loc>/<tags>', function(done){
-            chai.request('http://localhost:3000')
-            //chai.request(server)
+        it('TESTTEST should return 200 and list of items when tags are matches with GET /search/<loc>/<tags>', function(done){
+            //chai.request('http://localhost:3000')
+           // console.log(server);
+
+            chai.request(server)
                 .get('/search/123/apple')
                 .end(function(err, res) {
                     if (err) console.error(err);
@@ -20,7 +22,19 @@ describe('Item_REST', function() {
                     done();
                 });
         });
-        it('should return 200 and list of items when loc is given but no tags with GET /search/<loc>');
+        it('should return 200 and list of items when loc is given but no tags with GET /search/<loc>', function(done){
+           // chai.request('http://localhost:3000')
+            chai.request(server)
+                .get('/search/123')
+                .end(function(err, res) {
+                    if (err) console.error(err);
+                    res.should.have.status(200);
+                    res.body.should.have.property('items');
+                    res.body.items.should.be.a('array');
+                    done();
+                });
+        });
+
         it('should return 204 and return no item when tags not matching with GET /search/<loc>/<tags>.');
 
         it('should return 400 when no loc are passed with GET /search/<loc>/<tags>');
